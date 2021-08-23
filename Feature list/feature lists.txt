@@ -2,12 +2,15 @@ MVP：
   - people video chatting in the same room
   - delete a user's video once he/she is disconnected
   - join a specific room
-  - displaying user name
-  - chat messages
+  - deployed
+  
 
 Additional feature:
+  - displaying user name
+  - chat messages (persist or not?)
   - whiteboard
   - screensharing 
+  
 
 
 Dream feature:
