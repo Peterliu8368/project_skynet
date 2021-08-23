@@ -38,4 +38,4 @@ def sendMessage(message):
     print('message received')
 
 if __name__ == '__main__':
-    socketio.run(app)
+    socketio.run(app, cors_allowed_origins='*')
