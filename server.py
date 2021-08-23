@@ -13,12 +13,14 @@ def index():
 def room(roomId):
     return render_template('room.html', roomId = roomId)
 
-
 @socketio.on('join-room')
 def joinNewRoom(roomId, userId):
     join_room(roomId)
     emit('user-connected', userId, broadcast=True, to=roomId)
 
-if __name__ == '__main__':
+# @socketio.on('leave')
+# def disconnectUser(userId, roomId):
+#     emit('user-offline', userId, roomId, broadcast=True, to=roomId)
 
+if __name__ == '__main__':
     socketio.run(app, debug=True, port=5000)

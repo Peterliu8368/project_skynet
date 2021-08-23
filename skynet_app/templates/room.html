@@ -29,6 +29,7 @@
                     <div id="muteButton" class="options__button">
                         <i class="fa fa-microphone"></i>
                     </div>
+                    <button id='close'>Close</button>
                 </div>
                 <div class="options__right">
                     <div id="inviteButton" class="options__button">
@@ -59,8 +60,13 @@
         const videoGrid = document.getElementById("video-grid");
         const myVideo = document.createElement("video");
         myVideo.muted = true;
-        var peer = new Peer();
-
+        let peer = new Peer();
+        let peers = {}
+        
+        //when a user is connected to the peer server
+        peer.on("open", id => { 
+            socket.emit("join-room", ROOM_ID, id)
+        })
         //adding video
         function addVideoStream(video, stream) {
             video.srcObject = stream
@@ -80,29 +86,47 @@
             myVideoStream = stream;
             addVideoStream(myVideo, stream);
 
-            peer.on('call', mediaConnection => {
-                mediaConnection.answer(stream);
+            peer.on("call", call => {
+                call.answer(stream);
                 const video = document.createElement("video")
-                mediaConnection.on('stream', userStream => {
+                call.on("stream", userStream => {
                     addVideoStream(video, userStream);
                 })
+                
             })
             
-            socket.on('user-connected', userId => {
+            socket.on("user-connected", userId => {
                 const call = peer.call(userId, stream)
                 const video = document.createElement("video")
-                call.on('stream', userStream => {
+                call.on("stream", userStream => {
                     addVideoStream(video, userStream);
                 })
+                call.on('close', ()=> {
+                    console.log('call closed')
+                    video.remove();
+                })
+                // peers[userId] = call
+                // socket.on("user-offline", (userId, roomId)=>{
+                //     peers[userId].close()
+                //     video.remove()
+                // })
             })
+            
+
+            
             
         });
         
-        //when a user is connected to the peer server
-        peer.on('open', id => { 
-            socket.emit('join-room', ROOM_ID, id)
-        })
 
+        // peers.on("close", ()=>{
+        //     socket.emit("user-disconnected", userId, ROOM_ID);
+        //     peer.destroy();
+        // })
+
+        // document.getElementById('close').onclick = () => {
+        //     console.log('clicked close');
+        //     peer.destroy();
+        // }
 
 
     </script>
