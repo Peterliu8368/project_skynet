@@ -6,6 +6,8 @@ MVP：
   
 
 Additional feature:
+  - mute audio
+  - mute video
   - displaying user name
   - chat messages (persist or not?)
   - whiteboard

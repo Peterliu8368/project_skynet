@@ -38,4 +38,4 @@ def sendMessage(message):
     print('message received')
 
 if __name__ == '__main__':
-    socketio.run(app, port=3000)
+    socketio.run(app)
