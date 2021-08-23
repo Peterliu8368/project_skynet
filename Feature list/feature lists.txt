@@ -1,0 +1,15 @@
+MVP：
+  - people video chatting in the same room
+  - join a specific room
+  - displaying user name
+  - chat messages
+
+Additional feature:
+  - whiteboard
+  - screensharing 
+
+
+Dream feature:
+  - screen monitoring
+  - keyboard analysis
+  - realtime surveliance 
