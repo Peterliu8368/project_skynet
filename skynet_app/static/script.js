@@ -1,5 +1,5 @@
 const ROOM_ID = "{{roomId}}";
-const socket = io("https://project-skynet.herokuapp.com/");
+const socket = io("/");
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
