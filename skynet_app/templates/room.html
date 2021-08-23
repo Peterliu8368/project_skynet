@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Skynet</title>
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
-    <script src="/socket.io/socket.io.js"></script>
     <script src="https://kit.fontawesome.com/c939d0e917.js"></script>
 </head>
 <body>
@@ -19,7 +18,7 @@
         <div class="main__left">
             <div class="videos__group">
                 <div id="video-grid">
-
+                    
                 </div>
             </div>
             <div class="options">
@@ -46,7 +45,7 @@
                 <div class="messages"></div>
             </div>
             <div class="main__message_container">
-                    <input id="chat_message" type="text" autocomplete="off" placeholder="Type message here...">
+                <input id="chat_message" type="text" autocomplete="off" placeholder="Type message here...">
                 <div id="send" class="options__button">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                 </div>
