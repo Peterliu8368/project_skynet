@@ -1,3 +1,4 @@
+from werkzeug import debug
 from skynet_app import app
 from flask import render_template, redirect, request
 from flask_socketio import SocketIO, join_room, leave_room, send, emit, disconnect
@@ -39,4 +40,4 @@ def sendMessage(message):
     print('message received')
 
 if __name__ == '__main__':
-    socketio.run(app)
+    socketio.run(app, debug = True)

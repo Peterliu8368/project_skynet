@@ -4,6 +4,7 @@ const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
+
 let peer = new Peer(undefined, {
     secure: true
 });
@@ -20,12 +21,32 @@ peer.on("open", id => {
 //adding video
 function addVideoStream(video, stream) {
     video.srcObject = stream
+    video.setAttribute('autoplay', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
     video.addEventListener('loadedmetadata', () => {
         video.play();
         videoGrid.append(video)
 
     })
 }
+
+function connect(userId, stream) {
+    console.log('new user detected!')
+    const call = peer.call(userId, stream)
+    console.log(call)
+    const video = document.createElement("video")
+    call.on("stream", userStream => {
+        console.log('adding video stream!')
+        addVideoStream(video, userStream);
+    })
+    socket.on('removal', ()=>{
+        console.log('detected user removal request')
+        video.remove()
+        call.close()
+    })
+}
+
 
 let myVideoStream;
 navigator.mediaDevices.getUserMedia({
@@ -43,31 +64,18 @@ navigator.mediaDevices.getUserMedia({
             addVideoStream(video, userStream);
         })
         socket.on('removal', ()=>{
-            console.log('detected user removal request')
-            video.remove()
+            console.log('detected user removal request');
+            video.remove();
         })
     })
     
     socket.on("user-connected", userId => {
-        console.log('new user detected!')
-        const call = peer.call(userId, stream)
-        console.log(call)
-        const video = document.createElement("video")
-        call.on("stream", userStream => {
-            console.log('adding video stream!')
-            addVideoStream(video, userStream);
-        })
-
-        socket.on('removal', ()=>{
-            console.log('detected user removal request')
-            video.remove()
-            call.close()
-        })
+        connect(userId, stream);
     })
 
     document.getElementById('close').onclick = () => {
-        console.log('emmiting event')
-        socket.emit('client-disconnect-request')
+        console.log('emmiting event');
+        socket.emit('client-disconnect-request');
     }
 
     socket.on('redirect-home', ()=>{
@@ -76,9 +84,9 @@ navigator.mediaDevices.getUserMedia({
 });
 
 
-text = document.querySelector('#chat_message')
-send = document.getElementById("send")
-messages = document.querySelector('.messages')
+text = document.querySelector('#chat_message');
+send = document.getElementById("send");
+messages = document.querySelector('.messages');
 
 send.addEventListener('click', ()=> {
     if (text.value.length != 0) {
