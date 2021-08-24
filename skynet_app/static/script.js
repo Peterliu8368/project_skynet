@@ -68,10 +68,6 @@ navigator.mediaDevices.getUserMedia({
         call.on("stream", userStream => {
             addVideoStream(video, userStream);
         })
-        socket.on('removal', ()=>{
-            console.log('detected user removal request');
-            video.remove();
-        })
     })
     
     
