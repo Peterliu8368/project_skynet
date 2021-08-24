@@ -8,6 +8,7 @@ username = prompt('Human, what is your name?')
 
 //when a user is connected to the peer server
 peer.on("open", id => { 
+    console.log("peer connection open!")
     myId = id
     socket.emit("join-room", ROOM_ID, id)
 })
