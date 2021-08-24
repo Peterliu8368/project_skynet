@@ -1,1 +1,1 @@
-web: gunicorn wsgi:app --timeout 9000
+gunicorn -k geventwebsocket.gunicorn.workers.GeventWebSocketWorker -w 1 wsgi:app
