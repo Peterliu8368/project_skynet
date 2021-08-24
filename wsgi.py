@@ -23,7 +23,7 @@ def room(roomId):
 def joinNewRoom(roomId, userId):
     print('join room requrest received!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     join_room(roomId)
-    emit('user-connected', userId, broadcast=True, to=roomId)
+    emit('user-connected', userId, room=roomId)
     
 
 @socketio.on('client-disconnect-request')

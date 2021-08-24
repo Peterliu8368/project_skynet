@@ -46,8 +46,6 @@ navigator.mediaDevices.getUserMedia({
             console.log('detected user removal request')
             video.remove()
         })
-        
-        
     })
     
     socket.on("user-connected", userId => {
