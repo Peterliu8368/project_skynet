@@ -20,9 +20,6 @@ def room(roomId):
     return render_template('room.html', roomId = roomId)
 
 
-
-
-
 @socketio.on('join-room')
 def joinNewRoom(roomId, userId):
     print('join room requrest received!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
