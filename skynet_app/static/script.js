@@ -1,5 +1,5 @@
 const ROOM_ID = "d9bf37c6-ab34-4153-8437-bf3bed93e275";
-
+const myid = ''
 const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
@@ -42,7 +42,8 @@ function connect(userId, stream) {
 }
 peer.on("open", id => { 
     console.log("peer connection open!")
-    
+    myid = id
+    console.log(myid)
     socket.emit("join-room", ROOM_ID, id)
 })
 
@@ -55,7 +56,10 @@ navigator.mediaDevices.getUserMedia({
     addVideoStream(myVideo, stream);
     
     socket.on("user-connected", userId => {
-        connect(userId, stream);
+        if (userId != myid) {
+            console.log(`connecting to user: ${userId}`)
+            connect(userId, stream);
+        }
     })
 
     peer.on("call", call => {
