@@ -4,7 +4,9 @@ const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
-let peer = new Peer();
+let peer = new Peer(undefined, {
+    secure: true
+});
 // username = prompt('Human, what is your name?')
 
 //when a user is connected to the peer server
