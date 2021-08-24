@@ -40,7 +40,13 @@ function connect(userId, stream) {
         call.close()
     })
 }
-
+peer.on("open", id => { 
+    console.log("peer connection open!")
+    window.addEventListener('beforeunload', ()=> {
+        socket.emit("client-disconnect-request")
+    })
+    socket.emit("join-room", ROOM_ID, id)
+})
 
 navigator.mediaDevices.getUserMedia({
     audio: true,
@@ -112,10 +118,3 @@ socket.on("connect_error", (err) => {
     console.log(`connect_error due to ${err.message}`);
 });
 
-peer.on("open", id => { 
-    console.log("peer connection open!")
-    window.addEventListener('beforeunload', ()=> {
-        socket.emit("client-disconnect-request")
-    })
-    socket.emit("join-room", ROOM_ID, id)
-})
