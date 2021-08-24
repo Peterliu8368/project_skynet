@@ -1,11 +1,15 @@
 const ROOM_ID = "d9bf37c6-ab34-4153-8437-bf3bed93e275";
-const socket = io("/", { transports: ["websocket"] });
+const socket = io("/");
 // const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
-let peer = new Peer();
-username = prompt('Human, what is your name?')
+let peer = new Peer(undefined, {
+    secure: true, 
+    host: 'project-skynet.herokuapp.com', 
+    port: 443,
+});
+// username = prompt('Human, what is your name?')
 
 //when a user is connected to the peer server
 peer.on("open", id => { 
