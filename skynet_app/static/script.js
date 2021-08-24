@@ -42,9 +42,7 @@ function connect(userId, stream) {
 }
 peer.on("open", id => { 
     console.log("peer connection open!")
-    window.addEventListener('beforeunload', ()=> {
-        socket.emit("client-disconnect-request")
-    })
+    
     socket.emit("join-room", ROOM_ID, id)
 })
 
@@ -56,6 +54,10 @@ navigator.mediaDevices.getUserMedia({
     myVideoStream = stream;
     addVideoStream(myVideo, stream);
     
+    socket.on("user-connected", userId => {
+        connect(userId, stream);
+    })
+
     peer.on("call", call => {
         call.answer(stream);
         const video = document.createElement("video")
@@ -68,9 +70,6 @@ navigator.mediaDevices.getUserMedia({
         })
     })
     
-    socket.on("user-connected", userId => {
-        connect(userId, stream);
-    })
     
     document.getElementById('close').onclick = () => {
         console.log('emmiting event');
