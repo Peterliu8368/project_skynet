@@ -21,6 +21,7 @@ def room(roomId):
 
 @socketio.on('join-room')
 def joinNewRoom(roomId, userId):
+    print('join room requrest received!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     join_room(roomId)
     emit('user-connected', userId, broadcast=True, to=roomId)
     
