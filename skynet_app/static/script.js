@@ -8,10 +8,13 @@ myVideo.muted = true;
 // let peer = new Peer(undefined, {
 //     secure: true
 // });
-var peer = new Peer({config: {'iceServers': [{url: 'turn:numb.viagenie.ca',
-credential: 'muazkh',
-username: 'webrtc@live.com'}]}});
+var peer = new Peer({
+    config: {'iceServers': [
+        { url: 'stun:stun.l.google.com:19302' }
+    ]}
+});
 // username = prompt('Human, what is your name?')
+
 
 //when a user is connected to the peer server
 //adding video
