@@ -1,4 +1,3 @@
-from werkzeug.wrappers import request
 from skynet_app import app
 from flask import render_template, redirect, request
 from flask_socketio import SocketIO, join_room, leave_room, send, emit, disconnect
