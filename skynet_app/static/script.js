@@ -11,13 +11,6 @@ let peer = new Peer(undefined, {
 // username = prompt('Human, what is your name?')
 
 //when a user is connected to the peer server
-peer.on("open", id => { 
-    console.log("peer connection open!")
-    window.addEventListener('beforeunload', ()=> {
-        socket.emit("client-disconnect-request")
-    })
-    socket.emit("join-room", ROOM_ID, id)
-})
 //adding video
 function addVideoStream(video, stream) {
     video.srcObject = stream
@@ -27,7 +20,7 @@ function addVideoStream(video, stream) {
     video.addEventListener('loadedmetadata', () => {
         video.play();
         videoGrid.append(video)
-
+        
     })
 }
 
@@ -36,6 +29,7 @@ function connect(userId, stream) {
     const call = peer.call(userId, stream)
     console.log(call)
     const video = document.createElement("video")
+    
     call.on("stream", userStream => {
         console.log('adding video stream!')
         addVideoStream(video, userStream);
@@ -48,7 +42,6 @@ function connect(userId, stream) {
 }
 
 
-let myVideoStream;
 navigator.mediaDevices.getUserMedia({
     audio: true,
     video: true,
@@ -56,7 +49,7 @@ navigator.mediaDevices.getUserMedia({
 .then((stream) => {
     myVideoStream = stream;
     addVideoStream(myVideo, stream);
-
+    
     peer.on("call", call => {
         call.answer(stream);
         const video = document.createElement("video")
@@ -72,12 +65,12 @@ navigator.mediaDevices.getUserMedia({
     socket.on("user-connected", userId => {
         connect(userId, stream);
     })
-
+    
     document.getElementById('close').onclick = () => {
         console.log('emmiting event');
         socket.emit('client-disconnect-request');
     }
-
+    
     socket.on('redirect-home', ()=>{
         window.location.href ='/';
     })
@@ -109,8 +102,8 @@ socket.on('create-message', message => {
     console.log('start creating message')
     messages.innerHTML = messages.innerHTML + 
     `<div class="message">
-        <b><i class="far fa-user-circle"></i> <span> User </span> </b>
-        <span>${message}</span>
+    <b><i class="far fa-user-circle"></i> <span> User </span> </b>
+    <span>${message}</span>
     </div>`;
 })
 
@@ -118,3 +111,11 @@ socket.on('create-message', message => {
 socket.on("connect_error", (err) => {
     console.log(`connect_error due to ${err.message}`);
 });
+
+peer.on("open", id => { 
+    console.log("peer connection open!")
+    window.addEventListener('beforeunload', ()=> {
+        socket.emit("client-disconnect-request")
+    })
+    socket.emit("join-room", ROOM_ID, id)
+})

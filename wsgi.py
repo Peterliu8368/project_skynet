@@ -5,6 +5,7 @@ from flask_socketio import SocketIO, join_room, leave_room, send, emit, disconne
 from uuid import uuid4
 socketio = SocketIO(app, cors_allowed_origins='*')
 
+users = {}
 
 @app.route('/')
 def index():
