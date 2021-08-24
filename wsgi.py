@@ -12,9 +12,9 @@ def index():
 @app.route('/process-join', methods=['post'])
 def processJoin():
     roomName = request.form['room']
-    return redirect('/user')
+    return redirect(f'/{roomName}')
 
-@app.route('/user')
+@app.route('/<roomId>')
 def room(roomId):
     return render_template('room.html', roomId = roomId)
 
