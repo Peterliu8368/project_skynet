@@ -45,6 +45,7 @@ navigator.mediaDevices.getUserMedia({
     })
     
     socket.on("user-connected", userId => {
+        console.log('new user detected!')
         const call = peer.call(userId, stream)
         const video = document.createElement("video")
         call.on("stream", userStream => {
