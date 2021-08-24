@@ -1,4 +1,4 @@
-const ROOM_ID = "{{roomId}}";
+const ROOM_ID = "d9bf37c6-ab34-4153-8437-bf3bed93e275";
 const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
