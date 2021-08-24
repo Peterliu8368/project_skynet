@@ -3,7 +3,7 @@ from skynet_app import app
 from flask import render_template, redirect, request
 from flask_socketio import SocketIO, join_room, leave_room, send, emit, disconnect
 from uuid import uuid4
-socketio = SocketIO(app, cors_allowed_origins='*')
+socketio = SocketIO(app, cors_allowed_origins='*', logger=True, engineio_logger=True)
 
 
 @app.route('/')
