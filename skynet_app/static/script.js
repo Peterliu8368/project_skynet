@@ -12,7 +12,9 @@ let peer = new Peer(undefined, {
 //when a user is connected to the peer server
 peer.on("open", id => { 
     console.log("peer connection open!")
-    myId = id
+    window.addEventListener('beforeunload', ()=> {
+        socket.emit("client-disconnect-request")
+    })
     socket.emit("join-room", ROOM_ID, id)
 })
 //adding video
@@ -105,6 +107,7 @@ socket.on('create-message', message => {
     </div>`;
 })
 
+//debug tool
 socket.on("connect_error", (err) => {
     console.log(`connect_error due to ${err.message}`);
 });
