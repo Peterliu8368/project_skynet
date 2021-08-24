@@ -1,1 +1,1 @@
-web: gunicorn wsgi:app --timeout 9000
+web: gunicorn — worker-class eventlet -w 1 wsgi:app
