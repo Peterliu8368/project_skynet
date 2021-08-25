@@ -53,6 +53,11 @@
         </div>
     </div>
 </body>
+<script>
+    {% block javascript %}
+        const ROOM_ID = {{roomId}}
+    {% endblock %}
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js" integrity="sha512-PU5S6BA03fRv1Q5fpwXjg5nlRrgdoguZ74urFInkbABMCENyx5oP3hrDzYMMPh3qdLdknIvrGj3yqZ4JuU7Nag==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
 <script src="{{ url_for('static', filename = 'script.js') }}"></script>
