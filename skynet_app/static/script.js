@@ -54,7 +54,7 @@ peer.on("open", id => {
     console.log(myid);
     socket.emit("join-room", ROOM_ID, id);
 })
-
+let myVideoStream;
 navigator.mediaDevices.getUserMedia({
     audio: true,
     video: true,
