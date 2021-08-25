@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@500&display=swap');
 
 :root {
     --main-darklg: rgb(243, 165, 97);
-    --main-dark: floralwhite;
-    --primary-color: floralwhite;
-    --main-light: dodgerblue;
-    font-family: "Poppins", sans-serif;
+    --main-dark: blanchedalmond;
+    --primary-color: salmon;
+    --main-light: black;
+    font-family: 'Atma', cursive;
 }
 
 * {
@@ -24,7 +24,7 @@
 }
 
 .logo > h3 {
-    color: var(--main-light);
+    color: floralwhite;
 }
 
 .main {
