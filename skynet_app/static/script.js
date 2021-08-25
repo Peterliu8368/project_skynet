@@ -50,7 +50,7 @@ function connect(userId, stream) {
 setInterval(checkConnection, 1000);
 
 function checkConnection() {
-    for (let [key, value] of Object.entries(callList)) {
+    for (let [key, value] of Object.entries(attemptedCallList)) {
         if (value.open !== true) {
             console.log('detect user not connected, calling')
             connect(key, myVideoStream)
