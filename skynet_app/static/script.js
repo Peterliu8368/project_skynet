@@ -34,7 +34,7 @@ function addVideoStream(video, stream) {
 function connect(userId, stream) {
     console.log('new user detected!');
     const video = document.createElement("video");
-    const call;
+    let call;
     setTimeout(() => {
         call = peer.call(userId, stream);
     }, 5000);
