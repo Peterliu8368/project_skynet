@@ -27,13 +27,13 @@ function connect(userId, stream) {
     const video = document.createElement("video");
     call = peer.call(userId, stream);
     console.log('called new user');
-    callList[call.peer] = call;
     call.on("stream", userStream => {
         if (!callList[call.peer]) {
             console.log(call.open)
             console.log('adding video stream!');
             addVideoStream(video, userStream);
             
+            callList[call.peer] = call;
         }
     })
     console.log(peer.connections)
@@ -49,10 +49,10 @@ setInterval(checkConnection, 1000);
 
 function checkConnection() {
     for (let [key, value] of Object.entries(callList)) {
-        // if (value.open !== true) {
-        //     console.log('detect user not connected, calling')
-        //     connect(call.peer, myVideoStream)
-        // }
+        if (value.open !== true) {
+            console.log('detect user not connected, calling')
+            connect(key, myVideoStream)
+        }
         console.log(value.open);
     }
 }
