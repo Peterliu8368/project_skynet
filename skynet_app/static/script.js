@@ -3,13 +3,12 @@ const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
-users = {};
 var peer = new Peer({
     secure: true
 });
 // username = prompt('Human, what is your name?')
 
-
+callList = 
 //when a user is connected to the peer server
 //adding video
 function addVideoStream(video, stream) {
@@ -29,9 +28,12 @@ function connect(userId, stream) {
     call = peer.call(userId, stream);
     console.log('called new user')
     call.on("stream", userStream => {
-        console.log(call.open)
-        console.log('adding video stream!');
-        addVideoStream(video, userStream);
+        if (!callList[call.peer]) {
+            console.log(call.open)
+            console.log('adding video stream!');
+            addVideoStream(video, userStream);
+            callList[call.peer] = call
+        }
     })
     console.log(peer.connections)
     users[userId] = call
