@@ -93,8 +93,8 @@ video {
 .main__right {
     display: flex;
     flex-direction: column;
-    flex: 0.3;
-    background-color: #3778C2;
+    flex: 0.2;
+    background-color: #E56B1F;
 }
 
 .main__chat_window {
