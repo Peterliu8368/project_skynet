@@ -50,7 +50,7 @@ function connect(userId, stream) {
 setInterval(checkConnection, 1000);
 
 function checkConnection() {
-    for (let [key, value] of Object.entries(CallList)) {
+    for (let [key, value] of Object.entries(callList)) {
         if (value.open !== true) {
             console.log('detected disconnected user, removing video')
             videoList[key].remove();
