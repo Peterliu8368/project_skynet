@@ -8,9 +8,8 @@ var peer = new Peer({
 });
 // username = prompt('Human, what is your name?')
 
-callList = {}
-attemptedCallList = {}
-videoList = {}
+callList = {};
+videoList = {};
 //when a user is connected to the peer server
 //adding video
 function addVideoStream(video, stream) {
@@ -28,7 +27,6 @@ function connect(userId, stream) {
     console.log('new user detected!');
     const video = document.createElement("video");
     call = peer.call(userId, stream);
-    attemptedCallList[userId] = peer.call(userId, stream);
     console.log('called new user');
     call.on("stream", userStream => {
         if (!callList[call.peer]) {
