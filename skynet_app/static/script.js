@@ -47,7 +47,7 @@ function connect(userId, stream) {
     })
 }
 
-setInterval(checkConnection, 1000);
+setInterval(checkConnection, 5000);
 
 function checkConnection() {
     for (let [key, value] of Object.entries(attemptedCallList)) {
