@@ -1,5 +1,5 @@
-const ROOM_ID = {{roomId}};
-let myid = ''
+const ROOM_ID = roomId;
+let myid = '';
 const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
