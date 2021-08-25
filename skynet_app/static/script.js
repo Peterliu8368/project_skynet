@@ -1,18 +1,11 @@
-
 let myid = '';
 const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
-
-// let peer = new Peer(undefined, {
-//     secure: true
-// });
+users = {};
 var peer = new Peer({
-    config: {'iceServers': [
-        // { url: 'stun:stun.l.google.com:19302' },
-        { url: 'turn:numb.viagenie.ca', credential: 'muazkh', username:'webrtc@live.com' }
-    ]}
+    secure: true
 });
 // username = prompt('Human, what is your name?')
 
@@ -27,7 +20,6 @@ function addVideoStream(video, stream) {
     video.addEventListener('loadedmetadata', () => {
         video.play();
         videoGrid.append(video);
-        
     })
 }
 
@@ -41,13 +33,17 @@ function connect(userId, stream) {
         console.log('adding video stream!');
         addVideoStream(video, userStream);
     })
-    
+    if (call.open != true) {
+        console.log('failed to receive stream!!')
+    }
     socket.on('removal', ()=>{
         console.log('detected user removal request');
         video.remove();
         call.close();
     })
 }
+
+// open peer connection open, sending info to server
 peer.on("open", id => { 
     console.log("peer connection open!");
     myid = id;
@@ -90,7 +86,7 @@ navigator.mediaDevices.getUserMedia({
     })
 });
 
-
+// message section
 text = document.querySelector('#chat_message');
 send = document.getElementById("send");
 messages = document.querySelector('.messages');
@@ -111,7 +107,6 @@ text.addEventListener('keydown', (e)=> {
     }
 })
 
-
 socket.on('create-message', message => {
     console.log('start creating message')
     messages.innerHTML = messages.innerHTML + 
@@ -126,7 +121,7 @@ socket.on("connect_error", (err) => {
     console.log(`connect_error due to ${err.message}`);
 });
 
-
+// mute audio / video section
 const inviteButton = document.querySelector("#inviteButton");
 const muteButton = document.querySelector("#muteButton");
 const stopVideo = document.querySelector("#stopVideo");
@@ -160,6 +155,7 @@ stopVideo.addEventListener("click", () => {
     }
 });
 
+//invite
 inviteButton.addEventListener("click", (e) => {
     prompt(
         "Copy this link and send it to people you want to meet with",
