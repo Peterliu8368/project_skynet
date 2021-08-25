@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 :root {
-    --main-darklg: #rgb(243, 165, 97);
-    --main-dark: #blanchedalmond;
+    --main-darklg: rgb(243, 165, 97);
+    --main-dark: blanchedalmond;
     --primary-color: #2f80ec;
-    --main-light: dodgerblue;
+    --main-light: salmon;
     font-family: "Poppins", sans-serif;
 }
 
@@ -94,7 +94,7 @@ video {
     display: flex;
     flex-direction: column;
     flex: 0.3;
-    background-color: #242f41;
+    background-color: peru;
 }
 
 .main__chat_window {
