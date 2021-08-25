@@ -41,4 +41,4 @@ def sendMessage(message):
     print('message received')
 
 if __name__ == '__main__':
-    socketio.run(app, debug = True)
+    socketio.run(app)
