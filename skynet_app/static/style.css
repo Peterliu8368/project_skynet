@@ -3,8 +3,8 @@
 :root {
     --main-darklg: rgb(243, 165, 97);
     --main-dark: blanchedalmond;
-    --primary-color: salmon;
-    --main-light: floralwhite;
+    --primary-color: floralwhite;
+    --main-light: rebeccapurple;
     font-family: 'Atma', cursive;
 }
 
