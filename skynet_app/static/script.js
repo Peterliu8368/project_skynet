@@ -8,7 +8,7 @@ var peer = new Peer({
 });
 // username = prompt('Human, what is your name?')
 
-callList = 
+callList = {}
 //when a user is connected to the peer server
 //adding video
 function addVideoStream(video, stream) {
