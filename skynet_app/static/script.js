@@ -33,6 +33,7 @@ function connect(userId, stream) {
         console.log('adding video stream!');
         addVideoStream(video, userStream);
     })
+    console.log(peer.connections)
     users[userId] = call
     socket.on('removal', ()=>{
         console.log('detected user removal request');
@@ -84,7 +85,7 @@ navigator.mediaDevices.getUserMedia({
     socket.on('redirect-home', ()=>{
         window.location.href ='/';
     })
-    console.log(peer.connections)
+    
 });
 
 // message section
