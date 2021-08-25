@@ -99,6 +99,17 @@ navigator.mediaDevices.getUserMedia({
         call.on("stream", userStream => {
             addVideoStream(video, userStream);
         })
+        //duplicate code to make sure it works both ways
+        document.getElementById('close').onclick = () => {
+            console.log('emmiting event');
+            socket.emit('client-disconnect-request', myid);
+        }
+        socket.on('removal', (disconnectID)=>{
+            console.log(`detected user removal request, start deleting ${disconnectID}`);
+            delete callList[disconnectID];
+            video.remove();
+            call.close();
+        })
     })
     
     
