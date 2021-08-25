@@ -36,7 +36,6 @@ function connect(userId, stream) {
         }
     })
     console.log(peer.connections)
-    users[userId] = call
     socket.on('removal', ()=>{
         console.log('detected user removal request');
         video.remove();
