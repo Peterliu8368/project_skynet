@@ -51,7 +51,7 @@ setInterval(checkConnection, 1000);
 
 function checkConnection() {
     for (let [key, value] of Object.entries(callList)) {
-        console.log('checking connection...')
+        console.log(`checking connection... it is currently ${value.open}`)
         if (value.open != true) {
             console.log('detected disconnected user, removing video')
             videoList[key].remove();
