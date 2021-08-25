@@ -1,3 +1,4 @@
+const ROOM_ID = JSON.parse('{{roomId|tojson}}')
 let myid = '';
 const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
