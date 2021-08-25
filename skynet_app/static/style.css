@@ -100,6 +100,7 @@ video {
 .main__chat_window {
     flex-grow: 1;
     overflow-y: scroll;
+    overflow: auto;
 }
 
 .main__chat_window::-webkit-scrollbar {
