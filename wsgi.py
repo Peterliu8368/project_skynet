@@ -27,7 +27,6 @@ def room(roomId):
 def joinNewRoom(roomId, userId):
     print('join room requrest received!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     join_room(roomId)
-    Timer(3)
     users[id] = roomId
     emit('user-connected', userId, broadcast = True, to=roomId)
     
@@ -43,6 +42,10 @@ def disconnection():
 def sendMessage(message):
     emit('create-message', message, broadcast=True)
     print('message received')
+
+@socketio.on('check connection')
+def checkconnection():
+    pass
 
 if __name__ == '__main__':
     socketio.run(app)

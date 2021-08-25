@@ -3,7 +3,6 @@ const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
-users = {};
 var peer = new Peer({
     secure: true
 });
@@ -33,7 +32,6 @@ function connect(userId, stream) {
         console.log('adding video stream!');
         addVideoStream(video, userStream);
     })
-    users[userId] = call
     socket.on('removal', ()=>{
         console.log('detected user removal request');
         video.remove();
@@ -48,7 +46,7 @@ peer.on("open", id => {
     console.log("peer connection open!");
     myid = id;
     console.log(myid);
-    socket.emit("join-room", ROOM_ID, id);
+    socket.emit("join-room", ROOM_ID, id, peer);
 })
 let myVideoStream;
 navigator.mediaDevices.getUserMedia({
@@ -61,6 +59,7 @@ navigator.mediaDevices.getUserMedia({
     
     socket.on("user-connected", userId => {
         if (userId != myid) {
+            users.append[userId]
             console.log(`connecting to user: ${userId}`)
             connect(userId, stream);
         }
@@ -162,3 +161,7 @@ inviteButton.addEventListener("click", (e) => {
         window.location.href
     );
 });
+
+function checkConnection() {
+    socket.emit('check connection')
+}
