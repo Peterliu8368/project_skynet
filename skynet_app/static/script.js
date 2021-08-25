@@ -36,8 +36,9 @@ function connect(userId, stream) {
         }
     })
     console.log(peer.connections)
-    socket.on('removal', ()=>{
+    socket.on('removal', (disconnectID)=>{
         console.log('detected user removal request');
+        callList.delete(disconnectID);
         video.remove();
         call.close();
     })
@@ -89,7 +90,7 @@ navigator.mediaDevices.getUserMedia({
     
     document.getElementById('close').onclick = () => {
         console.log('emmiting event');
-        socket.emit('client-disconnect-request');
+        socket.emit('client-disconnect-request', myid);
     }
     
     socket.on('redirect-home', ()=>{
