@@ -4,7 +4,7 @@
     --main-darklg: rgb(243, 165, 97);
     --main-dark: blanchedalmond;
     --primary-color: floralwhite;
-    --main-light: rebeccapurple;
+    --main-light: black;
     font-family: 'Atma', cursive;
 }
 
@@ -94,7 +94,7 @@ video {
     display: flex;
     flex-direction: column;
     flex: 0.3;
-    background-color: rgb(253, 210, 146);
+    background-color: #3778C2;
 }
 
 .main__chat_window {
