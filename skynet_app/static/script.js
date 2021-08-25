@@ -43,7 +43,13 @@ function connect(userId, stream) {
     })
 }
 
+setInterval(checkConnection, 1000);
 
+function checkConnection() {
+    for (let [key, value] of Object.entries(callList)) {
+        console.log(value.open)
+    }
+}
 
 // open peer connection open, sending info to server
 peer.on("open", id => { 
