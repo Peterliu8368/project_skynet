@@ -92,14 +92,28 @@ navigator.mediaDevices.getUserMedia({
         }
     })
 
+    document.getElementById('close').onclick = () => {
+        console.log('emmiting event');
+        socket.emit('client-disconnect-request', myid);
+    }
+    
+    socket.on('redirect-home', ()=>{
+        window.location.href ='/';
+    })
+
+
     peer.on("call", call => {
         call.answer(stream);
         console.log('getting called!');
+        call.peerConnection.onaddstream = function (event) {
+            console.log('running add stream code')
+            call.addStream (event.stream, call);
+        }
         const video = document.createElement("video");
         call.on("stream", userStream => {
             addVideoStream(video, userStream);
         })
-        //duplicate code to make sure it works both ways
+        //duplicate code to make sure it works
         document.getElementById('close').onclick = () => {
             console.log('emmiting event');
             socket.emit('client-disconnect-request', myid);
@@ -110,16 +124,6 @@ navigator.mediaDevices.getUserMedia({
             video.remove();
             call.close();
         })
-    })
-    
-    
-    document.getElementById('close').onclick = () => {
-        console.log('emmiting event');
-        socket.emit('client-disconnect-request', myid);
-    }
-    
-    socket.on('redirect-home', ()=>{
-        window.location.href ='/';
     })
     
 });
