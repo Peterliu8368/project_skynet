@@ -10,6 +10,7 @@ var peer = new Peer({
 
 callList = {}
 attemptedCallList = {}
+videoList = {}
 //when a user is connected to the peer server
 //adding video
 function addVideoStream(video, stream) {
@@ -36,6 +37,7 @@ function connect(userId, stream) {
             addVideoStream(video, userStream);
             
             callList[call.peer] = call;
+            videoList[call.peer] = video;
         }
     })
     console.log(peer.connections)
@@ -47,17 +49,14 @@ function connect(userId, stream) {
     })
 }
 
-if (attemptedCallList.length !== callList.length) {
-    setInterval(checkConnection, 5000);
-}
+setInterval(checkConnection, 1000);
 
 function checkConnection() {
-    for (let [key, value] of Object.entries(attemptedCallList)) {
+    for (let [key, value] of Object.entries(CallList)) {
         if (value.open !== true) {
-            console.log('detect user not connected, calling')
-            connect(key, myVideoStream)
+            console.log('detected disconnected user, removing video')
+            videoList[key].remove();
         }
-        console.log(value.open);
     }
 }
 
