@@ -41,9 +41,7 @@ def sendMessage(message):
     emit('create-message', message, broadcast=True)
     print('message received')
 
-@socketio.on('check connection')
-def checkconnection():
-    pass
+
 
 if __name__ == '__main__':
     socketio.run(app)

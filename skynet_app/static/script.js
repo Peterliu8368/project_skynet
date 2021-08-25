@@ -3,6 +3,7 @@ const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
+users = {};
 var peer = new Peer({
     secure: true
 });
@@ -32,6 +33,7 @@ function connect(userId, stream) {
         console.log('adding video stream!');
         addVideoStream(video, userStream);
     })
+    users[userId] = call
     socket.on('removal', ()=>{
         console.log('detected user removal request');
         video.remove();
@@ -46,7 +48,7 @@ peer.on("open", id => {
     console.log("peer connection open!");
     myid = id;
     console.log(myid);
-    socket.emit("join-room", ROOM_ID, id, peer);
+    socket.emit("join-room", ROOM_ID, id);
 })
 let myVideoStream;
 navigator.mediaDevices.getUserMedia({
@@ -83,6 +85,7 @@ navigator.mediaDevices.getUserMedia({
         window.location.href ='/';
     })
 });
+console.log(users)
 // message section
 text = document.querySelector('#chat_message');
 send = document.getElementById("send");
@@ -159,5 +162,3 @@ inviteButton.addEventListener("click", (e) => {
         window.location.href
     );
 });
-
-
