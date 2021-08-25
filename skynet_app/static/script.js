@@ -38,6 +38,7 @@ function connect(userId, stream) {
     const video = document.createElement("video");
     console.log(call.open)
     call.on("stream", userStream => {
+        console.log(call.open)
         console.log('adding video stream!');
         addVideoStream(video, userStream);
     })
