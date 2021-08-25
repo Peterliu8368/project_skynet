@@ -26,13 +26,14 @@ function connect(userId, stream) {
     console.log('new user detected!');
     const video = document.createElement("video");
     call = peer.call(userId, stream);
-    console.log('called new user')
+    console.log('called new user');
+    callList[call.peer] = call;
     call.on("stream", userStream => {
         if (!callList[call.peer]) {
             console.log(call.open)
             console.log('adding video stream!');
             addVideoStream(video, userStream);
-            callList[call.peer] = call
+            
         }
     })
     console.log(peer.connections)
