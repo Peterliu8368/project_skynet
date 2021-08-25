@@ -37,11 +37,13 @@ function connect(userId, stream) {
     console.log(call);
     const video = document.createElement("video");
     console.log(call.open)
-    call.on("stream", userStream => {
-        console.log(call.open)
-        console.log('adding video stream!');
-        addVideoStream(video, userStream);
-    })
+    while (!call.open) {
+        call.on("stream", userStream => {
+            console.log(call.open)
+            console.log('adding video stream!');
+            addVideoStream(video, userStream);
+        })
+    }
     socket.on('removal', ()=>{
         console.log('detected user removal request');
         video.remove();
