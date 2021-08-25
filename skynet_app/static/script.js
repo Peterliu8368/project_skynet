@@ -59,7 +59,6 @@ navigator.mediaDevices.getUserMedia({
     
     socket.on("user-connected", userId => {
         if (userId != myid) {
-            users.append[userId]
             console.log(`connecting to user: ${userId}`)
             connect(userId, stream);
         }
@@ -84,7 +83,6 @@ navigator.mediaDevices.getUserMedia({
         window.location.href ='/';
     })
 });
-console.log(users);
 // message section
 text = document.querySelector('#chat_message');
 send = document.getElementById("send");
@@ -162,6 +160,4 @@ inviteButton.addEventListener("click", (e) => {
     );
 });
 
-function checkConnection() {
-    
-}
+
