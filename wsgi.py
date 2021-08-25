@@ -1,3 +1,4 @@
+from threading import Timer
 from skynet_app import app
 from flask import render_template, redirect, request
 from flask_socketio import SocketIO, join_room, leave_room, send, emit, disconnect
@@ -26,6 +27,7 @@ def room(roomId):
 def joinNewRoom(roomId, userId):
     print('join room requrest received!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     join_room(roomId)
+    Timer(3)
     users[id] = roomId
     emit('user-connected', userId, broadcast = True, to=roomId)
     
