@@ -41,7 +41,7 @@ function connect(userId, stream) {
     })
 }
 
-console.log(users)
+
 
 // open peer connection open, sending info to server
 peer.on("open", id => { 
@@ -85,7 +85,7 @@ navigator.mediaDevices.getUserMedia({
         window.location.href ='/';
     })
 });
-
+console.log(users);
 // message section
 text = document.querySelector('#chat_message');
 send = document.getElementById("send");
