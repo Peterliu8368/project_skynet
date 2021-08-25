@@ -84,8 +84,9 @@ navigator.mediaDevices.getUserMedia({
     socket.on('redirect-home', ()=>{
         window.location.href ='/';
     })
+    console.log(peer.connections)
 });
-console.log(users)
+
 // message section
 text = document.querySelector('#chat_message');
 send = document.getElementById("send");
