@@ -33,11 +33,10 @@ function addVideoStream(video, stream) {
 
 function connect(userId, stream) {
     console.log('new user detected!');
-    const call = peer.call(userId, stream);
-    console.log(call);
     const video = document.createElement("video");
     console.log(call.open)
-    while (!call.open) {
+    while (call.open != true) {
+        const call = peer.call(userId, stream);
         call.on("stream", userStream => {
             console.log(call.open)
             console.log('adding video stream!');
