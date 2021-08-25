@@ -1,4 +1,4 @@
-const ROOM_ID = {{roomId}}
+const ROOM_ID = {{roomId|safe}}
 let myid = '';
 const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
