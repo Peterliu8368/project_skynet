@@ -1,4 +1,4 @@
-const ROOM_ID = "d9bf37c6-ab34-4153-8437-bf3bed93e275";
+const ROOM_ID = {{ROOM_ID}};
 let myid = ''
 const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
@@ -34,16 +34,14 @@ function addVideoStream(video, stream) {
 function connect(userId, stream) {
     console.log('new user detected!');
     const video = document.createElement("video");
-    let call;
-    setTimeout(() => {
-        call = peer.call(userId, stream);
-        console.log('called new user')
-        call.on("stream", userStream => {
-            console.log(call.open)
-            console.log('adding video stream!');
-            addVideoStream(video, userStream);
-        })
-    }, 5000);
+    call = peer.call(userId, stream);
+    console.log('called new user')
+    call.on("stream", userStream => {
+        console.log(call.open)
+        console.log('adding video stream!');
+        addVideoStream(video, userStream);
+    })
+    
     socket.on('removal', ()=>{
         console.log('detected user removal request');
         video.remove();

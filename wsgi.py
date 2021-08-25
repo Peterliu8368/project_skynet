@@ -24,6 +24,7 @@ def room(roomId):
 def joinNewRoom(roomId, userId):
     print('join room requrest received!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
     join_room(roomId)
+    users[id] = roomId
     emit('user-connected', userId, room=roomId)
     
 
