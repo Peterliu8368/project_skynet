@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 :root {
-    --main-darklg: blanchedalmond;
+    --main-darklg: rgb(243, 165, 97);
     --main-dark: floralwhite;
-    --primary-color: #2f80ec;
+    --primary-color: peru;
     --main-light: salmon;
     font-family: "Poppins", sans-serif;
 }
@@ -94,7 +94,7 @@ video {
     display: flex;
     flex-direction: column;
     flex: 0.3;
-    background-color: peru;
+    background-color: blanchedalmond;
 }
 
 .main__chat_window {
