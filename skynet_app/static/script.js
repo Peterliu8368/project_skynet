@@ -38,7 +38,7 @@ function connect(userId, stream) {
     console.log(peer.connections)
     socket.on('removal', (disconnectID)=>{
         console.log('detected user removal request');
-        callList.delete(disconnectID);
+        delete callList[disconnectID];
         video.remove();
         call.close();
     })
@@ -48,10 +48,11 @@ setInterval(checkConnection, 1000);
 
 function checkConnection() {
     for (let [key, value] of Object.entries(callList)) {
-        if (value.open !== true) {
-            console.log('detect user not connected, calling')
-            connect(call.peer, myVideoStream)
-        }
+        // if (value.open !== true) {
+        //     console.log('detect user not connected, calling')
+        //     connect(call.peer, myVideoStream)
+        // }
+        console.log(value.open);
     }
 }
 
