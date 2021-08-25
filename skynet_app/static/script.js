@@ -4,8 +4,8 @@ const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
 RTCPeerConnection.prototype.addTrack = function (track, stream) {
-    this.addStream (stream); 
-} 
+    this.addStream (new MediaStream ([track])); 
+}
 var peer = new Peer({
     secure: true
 });
