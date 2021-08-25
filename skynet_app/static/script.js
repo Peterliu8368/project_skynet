@@ -163,5 +163,5 @@ inviteButton.addEventListener("click", (e) => {
 });
 
 function checkConnection() {
-    socket.emit('check connection')
+    
 }
