@@ -33,15 +33,15 @@ function connect(userId, stream) {
         console.log('adding video stream!');
         addVideoStream(video, userStream);
     })
-    if (call.open != true) {
-        console.log('failed to receive stream!!')
-    }
+    users[userId] = call
     socket.on('removal', ()=>{
         console.log('detected user removal request');
         video.remove();
         call.close();
     })
 }
+
+console.log(users)
 
 // open peer connection open, sending info to server
 peer.on("open", id => { 
