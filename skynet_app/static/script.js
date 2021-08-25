@@ -36,7 +36,7 @@ function connect(userId, stream) {
     const call = peer.call(userId, stream);
     console.log(call);
     const video = document.createElement("video");
-    
+    console.log(call.open)
     call.on("stream", userStream => {
         console.log('adding video stream!');
         addVideoStream(video, userStream);
@@ -71,6 +71,7 @@ navigator.mediaDevices.getUserMedia({
 
     peer.on("call", call => {
         call.answer(stream);
+        console.log('getting called!');
         const video = document.createElement("video");
         call.on("stream", userStream => {
             addVideoStream(video, userStream);
