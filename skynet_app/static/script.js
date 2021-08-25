@@ -3,6 +3,9 @@ const socket = io("/", { transports: ["websocket"] });
 const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
+RTCPeerConnection.prototype.addTrack = function (track, stream) {
+    this.addStream (stream); 
+} 
 var peer = new Peer({
     secure: true
 });
@@ -23,11 +26,16 @@ function addVideoStream(video, stream) {
     })
 }
 
+
+
 function connect(userId, stream) {
     console.log('new user detected!');
     const video = document.createElement("video");
     call = peer.call(userId, stream);
     console.log('called new user');
+    call.peerConnection.onaddstream = function (event) {
+        call.addStream (event.stream, call);
+    }
     call.on("stream", userStream => {
         if (!callList[call.peer]) {
             console.log(call.open)
