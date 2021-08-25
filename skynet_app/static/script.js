@@ -35,14 +35,12 @@ function connect(userId, stream) {
     console.log('new user detected!');
     const video = document.createElement("video");
     const call = peer.call(userId, stream);
-    while (call.open != true) {
-        const call = peer.call(userId, stream);
-        call.on("stream", userStream => {
-            console.log(call.open)
-            console.log('adding video stream!');
-            addVideoStream(video, userStream);
-        })
-    }
+    console.log('called new user')
+    call.on("stream", userStream => {
+        console.log(call.open)
+        console.log('adding video stream!');
+        addVideoStream(video, userStream);
+    })
     socket.on('removal', ()=>{
         console.log('detected user removal request');
         video.remove();
