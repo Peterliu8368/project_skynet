@@ -4,17 +4,17 @@
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Document</title>
+    <title>Main Room</title>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We' crossorigin='anonymous'>
 </head>
-<body style="background-color: #161d29;">
-    <nav style="background-color: #1d2635;" class="text-light">
+<body style="background-color: blanchedalmond;">
+    <nav style="background-color: rgb(243, 165, 97);" class="text-light">
         <div class="row justi">
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-8">
                     <nav class="navbar">
-                        <h1 class="me-auto mx-3">Skynet</h1>
+                        <h1 class="me-auto mx-3 text-light">Skynet</h1>
                         <!-- <a href="/login" class="btn btn-light">Login</a>
                         <a href="/register" class="mx-3 btn btn-light">Registration</a> -->
                     </nav>
@@ -25,16 +25,25 @@
     </nav>
     <div class="container">
         <div style="height: 30vh;"></div>
-        <form style="position: absolute; left: 40%;" action="/process-join" method="POST">
-            <h3 style="color: crimson;" class="text-center">Human, I am watching..</h3>
-            <label class=" text-light" for="room">Room: </label>
-            <br>
-            <input type="text" name="room" id="room">
-            <br>
-            <br>
-            <input type="submit" value="Join" class="btn btn-primary">
-            <br>
-        </form>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col col-3">
+                <form action="/process-join" method="POST">
+                    <h3 style="color: dodgerblue;" >Don't have a good day, have a great day!</h3>
+                    <div >
+                        <label class=" text-dark" for="room">Room: </label>
+                        <br>
+                        <input type="text" name="room" id="room">
+                        <br>
+                        <br>
+                        <input type="submit" value="Join" class="btn btn-primary">
+                        <br>
+                    </div>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
+        
     </div>
 </body>
 </html>
