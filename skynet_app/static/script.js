@@ -115,7 +115,7 @@ navigator.mediaDevices.getUserMedia({
         //duplicate code to make sure it works
         document.getElementById('close').onclick = () => {
             console.log('emmiting event');
-            socket.emit('client-disconnect-request', myid);
+            socket.emit('client-disconnect-request', myid, ROOM_ID);
         }
         socket.on('removal', (disconnectID)=>{
             console.log(`detected user removal request, start deleting ${disconnectID}`);

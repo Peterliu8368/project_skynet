@@ -30,9 +30,9 @@ def joinNewRoom(roomId, userId):
     
 
 @socketio.on('client-disconnect-request')
-def disconnection(disconnectID):
+def disconnection(disconnectID, roomid):
     print('disconnection requet received, disconnecting the client')
-    emit('removal', disconnectID, broadcast=True)
+    emit('removal', disconnectID, broadcast=True, to=roomid)
     emit('redirect-home')
     
 
