@@ -93,7 +93,7 @@ navigator.mediaDevices.getUserMedia({
 
     document.getElementById('close').onclick = () => {
         console.log('emmiting event');
-        socket.emit('client-disconnect-request', myid);
+        socket.emit('client-disconnect-request', myid, ROOM_ID);
     }
     
     socket.on('redirect-home', ()=>{
