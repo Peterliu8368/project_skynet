@@ -82,9 +82,7 @@ navigator.mediaDevices.getUserMedia({
 .then((stream) => {
     myVideoStream = stream;
     addVideoStream(myVideo, stream);
-    RTCPeerConnection.prototype.addTrack = function (track, stream) {
-        this.addStream (new MediaStream ([track])); 
-    }
+    
     
     socket.on("user-connected", userId => {
         if (userId != myid) {
