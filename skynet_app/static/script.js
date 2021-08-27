@@ -132,7 +132,7 @@ messages = document.querySelector('.messages');
 
 send.addEventListener('click', ()=> {
     if (text.value.length != 0) {
-        socket.emit("message", text.value);
+        socket.emit("message", text.value, ROOM_ID);
         text.value='';
         console.log("message emitted!");
     }
@@ -140,7 +140,7 @@ send.addEventListener('click', ()=> {
 
 text.addEventListener('keydown', (e)=> {
     if (e.key === 'Enter' && text.value.length != 0) {
-        socket.emit("message", text.value);
+        socket.emit("message", text.value, ROOM_ID);
         text.value='';
         console.log("message emitted!");
     }
