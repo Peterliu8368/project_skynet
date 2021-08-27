@@ -37,8 +37,8 @@ def disconnection(disconnectID, roomid):
     
 
 @socketio.on('message')
-def sendMessage(message):
-    emit('create-message', message, broadcast=True)
+def sendMessage(message, roomId):
+    emit('create-message', message, broadcast=True, to=roomId)
     print('message received')
 
 
