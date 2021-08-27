@@ -42,10 +42,7 @@ function connect(userId, stream) {
             videoList[call.peer] = video;
         }
     })
-    call.peerConnection.onaddstream = function (event) {
-        console.log('running add stream code')
-        call.addStream (event.stream, call);
-    }
+    
     console.log(peer.connections)
     socket.on('removal', (disconnectID)=>{
         console.log(`detected user removal request, start deleting ${disconnectID}`);
