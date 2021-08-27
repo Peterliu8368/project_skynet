@@ -84,7 +84,7 @@ navigator.mediaDevices.getUserMedia({
     socket.on("user-connected", userId => {
         if (userId != myid) {
             console.log(`connecting to user: ${userId}`)
-            setTimeout(connect,3000, userId, stream)
+            setTimeout(connect,5200, userId, stream)
             // connect(userId, stream);
         }
     })
