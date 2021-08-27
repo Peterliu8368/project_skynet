@@ -12,7 +12,8 @@ var peer = new Peer({
     config: {'iceServers': [
         { url: 'stun:stun.l.google.com:19302' },
         { url: 'turn:numb.viagenie.ca', credential: 'muazkh', username:'webrtc@live.com' }
-    ]} 
+    ]},
+    secure: true 
 })
 // username = prompt('Human, what is your name?')
 
