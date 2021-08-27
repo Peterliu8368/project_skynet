@@ -4,9 +4,16 @@ const videoGrid = document.getElementById("video-grid");
 const myVideo = document.createElement("video");
 myVideo.muted = true;
 
+// var peer = new Peer({
+//     secure: true
+// });
+
 var peer = new Peer({
-    secure: true
-});
+    config: {'iceServers': [
+        { url: 'stun:stun.l.google.com:19302' },
+        { url: 'turn:numb.viagenie.ca', credential: 'muazkh', username:'webrtc@live.com' }
+    ]} 
+})
 // username = prompt('Human, what is your name?')
 
 callList = {};
